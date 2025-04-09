@@ -145,3 +145,4 @@ C:\Learning\CSharp\Assessment6\MoviesApp\obj\Debug\net9.0\MoviesApp.pdb
 C:\Learning\CSharp\Assessment6\MoviesApp\obj\Debug\net9.0\MoviesApp.genruntimeconfig.cache
 C:\Learning\CSharp\Assessment6\MoviesApp\obj\Debug\net9.0\ref\MoviesApp.dll
 C:\Learning\CSharp\Assessment6\MoviesApp\bin\Debug\net9.0\CsvHelper.dll
+C:\Learning\CSharp\Assessment6\MoviesApp\obj\Debug\net9.0\MoviesApp.sourcelink.json

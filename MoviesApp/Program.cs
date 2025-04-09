@@ -69,6 +69,7 @@ public class Program
         context.SaveChanges();
 
         System.Console.WriteLine("Registered successfully! Press Enter to continue...");
+        
     }
     static void Login()
     {
@@ -79,22 +80,26 @@ public class Program
 
         System.Console.Write("Password: ");
         var password = Console.ReadLine();
-
+        
         var user = context.Users.FirstOrDefault(user => user.UserName == username && user.Password == password);
         if (user == null || user.UserName != username || user.Password != password)
         {
             Console.WriteLine("Invalid credentials. Press Enter to continue...");
+            return;
         }
-        System.Console.WriteLine($"Welcome: {user.UserName}");
-        System.Console.WriteLine("---------------------");
-        if (user.Role == "Admin")
-        {
-            AdminDashboard();
-        }
-        else
-        {
-            UserDashboard(user);
-        }
+       else{
+         System.Console.WriteLine($"Welcome: {user.UserName}");
+            System.Console.WriteLine("---------------------");
+            if (user.Role == "Admin")
+            {
+                AdminDashboard();
+            }
+            else
+            {
+                UserDashboard(user);
+            }
+       }
+        
     }
     static void AdminDashboard()
     {
@@ -131,7 +136,7 @@ public class Program
                     break;
             }
         }
-        System.Console.WriteLine("--------------");
+        
     }
     static void AdMovies()
     {
@@ -168,6 +173,7 @@ public class Program
         }
         context.SaveChanges();
         System.Console.WriteLine("Movies add successfully!");
+        
     }
     static void ViewMovies(){
         System.Console.WriteLine("Movies that are added:");
@@ -177,19 +183,13 @@ public class Program
             System.Console.WriteLine($"Movie ID: {movie.MovieId}\nMovie Name: {movie.MovieName}\nGenre: {movie.Genre}");
             System.Console.WriteLine("--------------------------");
         }
+        
     }
      static void RegisteredUsers()
     {
         var users = context.Users
         .Where(user => user.Role == "User")
-        .Select(user => new
-        {
-            user.UserId,
-            user.UserName,
-            user.Email,
-            user.Phone,
-            user.DateOfBirth
-        }).ToList();
+       .ToList();
 
         System.Console.WriteLine("====Registered Users====");
         foreach (var user in users)
@@ -197,6 +197,7 @@ public class Program
             System.Console.WriteLine($"user ID:{user.UserId}\nUserName: {user.UserName}\nEmail: {user.Email}\n Phone: {user.Phone}\n DateOfBirth: {user.DateOfBirth.ToShortDateString()}\n {new string('-', 40)}");
         }
         System.Console.WriteLine($"Total Users: {users.Count}");
+        
     }
     static void RemoveMovies()
     {
@@ -240,6 +241,7 @@ public class Program
 
         context.SaveChanges();
         System.Console.WriteLine("Movies removed successfully!.");
+
     }
     static void UserDashboard(User user)
     {
@@ -284,6 +286,7 @@ public class Program
                     break;
             }
         }
+        
     }
     static void BookMovie(User user)
     {
@@ -377,8 +380,9 @@ public class Program
 
         System.Console.WriteLine($"\nBooking successful!");
         System.Console.WriteLine($"Movie: {selectedMovie.MovieName}\nShowtime: {selectedShowTime}\nTickets: {ticketCount}\nTotal Price: {totalPrice}");
-
+       
     }
+    
     static void BookingHistory(User user)
     {
         System.Console.WriteLine("== Your Booking History ==");
@@ -411,5 +415,6 @@ public class Program
 
             }
         }
+        
     }   
 }
